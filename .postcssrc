@@ -1,0 +1,10 @@
+{
+    "plugins": {
+        "postcss-import": true,
+        "postcss-url": true,
+        "postcss-custom-properties": true,
+        "postcss-mixins": true,
+        "postcss-pxtorem": true,
+        "postcss-nested": true
+    }
+}

@@ -1,0 +1,5 @@
+mixin button(title, type="button", href)
+    if (type === "a")
+        a(href= href class="button button_no-bg " + attributes.class)= title
+    else
+        button.button= title

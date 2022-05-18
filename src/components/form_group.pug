@@ -1,0 +1,4 @@
+mixin form_group(name, label, type="text")
+    .form-group
+        label(for= name)= label
+        input(id=name type=type, name=name)

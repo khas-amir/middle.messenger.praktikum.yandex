@@ -1,0 +1,10 @@
+extends ./main
+include ../components/button
+
+block content
+    div.error-wrapper
+        h1.error-code
+            block status
+        p.error-message
+            block message
+        +button("Назад к чатам", "a", "index.pug")

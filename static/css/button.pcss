@@ -1,0 +1,23 @@
+.button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 13px;
+    border: none;
+    border-radius: 8px;
+    padding: 1em;
+    cursor: pointer;
+
+    &_no-bg {
+        background: 0;
+        color: var(--primary-color);
+        font-size: 11px;
+        padding: 0;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &_danger {
+        color: var(--danger-color);
+    }
+}

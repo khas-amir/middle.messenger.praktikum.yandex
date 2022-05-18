@@ -1,0 +1,28 @@
+extends ../layout/main
+
+include ../components/button
+
+block content
+    - var obj = {
+    - "Почта": "pochta@yandex.ru",
+    - "Логин": "ivanivanov",
+    - "Имя": "Иван",
+    - "Фамилия": "Иванов",
+    - "Имя в чате": "Иван",
+    - "Телефон": "+7 (909) 967 30 30"
+    - }
+    .profile
+        .back-btn
+        .profile__wrap
+            .profile-avatar
+                img(src="/static/img/avatar.svg", alt="avatar")
+            h1.profile__title Иван
+            dl.profile-list
+                each val, key in obj
+                    .profile-item
+                        dt.profile-item__title= key
+                        dd.profile-item__desc= val
+            
+            +button("Изменить данные", "a")
+            +button("Изменить пароль", "a")
+            +button("Выйти", "a")(class="button_danger")
