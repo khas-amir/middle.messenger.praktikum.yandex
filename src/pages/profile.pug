@@ -1,8 +1,8 @@
-extends ../layout/main
+extends ../layout/profile
 
 include ../components/button
 
-block content
+block profile
     - var obj = {
     - "Почта": "pochta@yandex.ru",
     - "Логин": "ivanivanov",
@@ -11,18 +11,13 @@ block content
     - "Имя в чате": "Иван",
     - "Телефон": "+7 (909) 967 30 30"
     - }
-    .profile
-        .back-btn
-        .profile__wrap
-            .profile-avatar
-                img(src="/static/img/avatar.svg", alt="avatar")
-            h1.profile__title Иван
-            dl.profile-list
-                each val, key in obj
-                    .profile-item
-                        dt.profile-item__title= key
-                        dd.profile-item__desc= val
-            
-            +button("Изменить данные", "a")
-            +button("Изменить пароль", "a")
-            +button("Выйти", "a")(class="button_danger")
+    h1.profile__title Иван
+    dl.profile-list
+        each val, key in obj
+            .profile-item
+                dt.profile-item__title= key
+                dd.profile-item__desc= val
+    
+    +button("Изменить данные", "a", "change_profile.pug")(class="button_no-bg profile-item")
+    +button("Изменить пароль", "a", "change_password.pug")(class="button_no-bg profile-item")
+    +button("Выйти", "a")(class="button_danger profile-item")

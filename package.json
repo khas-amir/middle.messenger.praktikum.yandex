@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "express": "^4.17.3",
+    "normalize.css": "^8.0.1",
     "parcel": "^2.3.1"
   }
 }

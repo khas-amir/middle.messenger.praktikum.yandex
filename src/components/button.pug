@@ -1,5 +1,6 @@
 mixin button(title, type="button", href)
+    - var classes = ["button", attributes.class]
     if (type === "a")
-        a(href= href class="button button_no-bg " + attributes.class)= title
+        a(href= href   class=["button button_no-bg",attributes.class])= title
     else
-        button.button= title
+        button(class=["button", attributes.class])= title
