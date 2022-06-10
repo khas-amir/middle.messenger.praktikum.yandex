@@ -6,7 +6,7 @@
     "dev": "parcel src/pages/*.pug --no-cache",
     "build": "npm run clean && parcel build  src/pages/*.pug",
     "start": "npm run build && node server.js",
-    "clean": "rm -rf dist/* .parcel-cache/*"
+    "clean": "rm -rf dist .parcel-cache"
   },
   "repository": {
     "type": "git",
