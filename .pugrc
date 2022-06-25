@@ -1,0 +1,38 @@
+{
+    "locals": {
+        "user": {
+             "email": "pochta@yandex.ru",
+            "login": "ivanivanov",
+            "first_name": "Иван",
+            "second_name": "Иванов",
+            "chat_login": "Иван",
+            "phone": "+7 (909) 967 30 30"
+        },
+        "inputs": {
+            "email": {
+                "label": "Почта",
+                "type": "email"
+            },
+            "login": {
+                "label": "Логин",
+                "type": "text"
+            },
+            "first_name": {
+                "label": "Имя",
+                "type": "text"
+            },
+            "second_name": {
+                "label": "Фамилия",
+                "type": "text"
+            },
+            "chat_login": {
+                "label": "Логин в чате",
+                "type": "text"
+            },
+            "phone": {
+                "label": "Телефон",
+                "type": "tel"
+            }
+        }
+    }
+}

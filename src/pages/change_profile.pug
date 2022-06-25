@@ -3,19 +3,11 @@ extends ../layout/profile
 include ../components/button
 
 block profile
-    - var obj = {
-    - "Почта": "pochta@yandex.ru",
-    - "Логин": "ivanivanov",
-    - "Имя": "Иван",
-    - "Фамилия": "Иванов",
-    - "Имя в чате": "Иван",
-    - "Телефон": "+7 (909) 967 30 30"
-    - }
     form
         .profile-list
-            each val, key in obj
+            each val, key in user
                 .profile-item
-                    label.profile-item__title= key
+                    label.profile-item__title= inputs[key]["label"]
                     input.profile-item__desc(value=val)
     
         +button("Сохранить")(class="profile__button" type="submit")
