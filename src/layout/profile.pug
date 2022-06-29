@@ -1,0 +1,15 @@
+extends ../layout/main
+
+block content
+    .profile
+        .back
+            .back__button
+                a(href="/")
+                    img(src="/static/img/arrow.svg", alt="arrow")
+        .profile__wrap
+            .profile-avatar
+                .overlay
+                img(src="/static/img/avatar.svg", alt="avatar")
+                .middle
+                    span.text Поменять #[br] аватар
+            block profile

@@ -1,0 +1,20 @@
+@define-mixin center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+@define-mixin bottom-line {
+    padding: 10px 0;
+    border-bottom: 1px solid #EAEAEA;
+    
+    &:last-child {
+            border-bottom: none;            
+    }
+    
+    &:first-child {
+        padding-top: 0;
+    }
+}

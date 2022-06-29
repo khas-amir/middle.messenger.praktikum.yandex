@@ -1,0 +1,14 @@
+extends ../layout/profile
+
+include ../components/button
+
+block profile
+    form
+        .profile-list
+            each val, key in user
+                .profile-item
+                    label.profile-item__title= inputs[key]["label"]
+                    input.profile-item__desc(value=val)
+    
+        +button("Сохранить")(class="profile__button" type="submit")
+    
