@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
-    "dev": "parcel src/pages/*.pug --no-cache",
-    "build": "npm run clean && parcel build  src/pages/*.pug",
+    "dev": "parcel static/index.html --no-cache",
+    "build": "npm run clean && parcel build  static/index.html",
     "start": "npm run build && node server.js",
     "clean": "rm -rf dist .parcel-cache"
   },
@@ -21,7 +21,10 @@
   "homepage": "https://github.com/lordproud/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@parcel/transformer-pug": "^2.3.1",
+    "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.2",
+    "parcel": "^2.6.2",
+    "parcel-transformer-pug-precompile": "^1.0.6",
     "postcss": "^8.4.6",
     "postcss-custom-properties": "^12.1.4",
     "postcss-import": "^14.0.2",
@@ -33,9 +36,16 @@
   "dependencies": {
     "express": "^4.17.3",
     "normalize.css": "^8.0.1",
-    "parcel": "^2.3.1"
+    "uuid": "^8.3.2"
   },
   "engines": {
     "node": ">=12"
+  },
+  "targets": {
+    "default": {
+      "engines": {
+        "browsers": ">= 50%"
+      }
+    }
   }
 }
