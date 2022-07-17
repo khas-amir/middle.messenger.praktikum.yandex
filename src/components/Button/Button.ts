@@ -6,7 +6,9 @@ import template from './button.pug';
 
 type Props = {
     text: string,
-    type?: string
+    type?: string,
+    className?: string,
+    href?: string
 }
 
 
@@ -21,7 +23,7 @@ export default class Button extends Block {
 
     render() {
 
-        return this.compile(template, {text: this.props.text, type: this.props.type})
+        return this.compile(template, this.props)
 
     }
 }
