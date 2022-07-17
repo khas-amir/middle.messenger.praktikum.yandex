@@ -4,7 +4,6 @@ import { v4 as makeUUID } from 'uuid';
 
 type Props = {
   [propsName: string]: Exclude<any, Block>,
-
 }
 
 type Meta = {
@@ -63,12 +62,15 @@ abstract class Block {
 
   }
 
-  compile(template: (props) => string, props: Props): DocumentFragment {
+  compile(template: (props: Props) => string, props: Props): DocumentFragment {
     const propsAndStubs = { ...props };
+
+
 
     Object.entries(this.children).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="${child._id}"></div>`
     });
+
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
@@ -77,7 +79,9 @@ abstract class Block {
 
     Object.values(this.children).forEach(child => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      stub.replaceWith(child.getContent());
+      if (stub) {
+        stub.replaceWith(child.getContent());
+      }
     });
 
 
@@ -88,6 +92,8 @@ abstract class Block {
     const children = {} as Children;
     const props = {} as Props;
 
+
+
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
@@ -95,6 +101,7 @@ abstract class Block {
         props[key] = value;
       }
     });
+
 
     return { children, props };
   }
@@ -203,14 +210,14 @@ abstract class Block {
   _makePropsProxy(props: Object) {
     const self = this;
 
-    const handler: ProxyHandler<Object> = {
-      set(target, p, value, receiver) {
+    const handler: ProxyHandler<any> = {
+      set(target, p, value, receiver): boolean {
         target[p as keyof Object] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_RENDER, { ...target }, target);
         return Reflect.set(target, p, value, receiver);
       },
 
-      deleteProperty() {
+      deleteProperty(): boolean {
         throw new Error("Отказано в доступе");
       },
     };
