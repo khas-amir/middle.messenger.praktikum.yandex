@@ -1,0 +1,84 @@
+@import '../../../static/css/mixins.pcss';
+
+.profile {
+    
+    &-avatar {
+        padding: 45px;
+        background-color: #EFEFEF;
+        margin: auto;
+        border-radius: 50%;
+        margin-top: 60px;
+        margin-bottom: 97px;
+        position: relative;
+
+        &:hover > .overlay {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            background-color: #000;
+            opacity: 0.5;
+            border-radius: 50%;
+            z-index: 100;
+            display: block;
+        }
+
+
+        &:hover .middle {
+            opacity: 1;
+        }
+
+        .middle {
+            opacity: 0;
+            @mixin center;
+            text-align: center;
+            font-size: 13px;
+            z-index: 200;
+            color: var(--white-color);
+            font-weight: 500;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 16px;
+        color: var(--black-color);
+        font-weight: 600;
+        margin-bottom: 60px;
+    }
+
+    &__wrap {
+        max-width: 510px;  
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    &-list {
+        margin-bottom: 60px;
+    }
+
+    &-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        font-weight: 500;
+
+        @mixin bottom-line;
+        
+
+        &__title {
+
+        }
+
+        &__desc {
+             color: var(--gray-color);
+        }
+    }
+
+    .button {
+        @mixin bottom-line;
+    }
+}
