@@ -33,30 +33,37 @@ const user = {
 const renderPage = (block: Block) => render('#app', block);
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    switch (window.location.pathname) {
-        case '/':
-            renderPage(new IndexPage());
-            break;
-        case '/login':
+    // const app =  document.getElementById('app');
+    if (window.location.pathname === '/') {
+        renderPage(new IndexPage());
+    }
+})
+
+window.addEventListener('hashchange', () => {
+    const app = document.getElementById('app');
+    if (app) {
+        app.textContent = ''
+    }
+    switch (window.location.hash) {
+        case '#login':
             renderPage(new Login())
             break;
-        case '/profile':
+        case '#profile':
             renderPage(new UserProfile({ profile: user }))
             break;
-        case '/signin':
+        case '#signin':
             renderPage(new Signin());
             break;
-        case '/change_profile':
+        case '#change_profile':
             renderPage(new ChangeProfile({profile: user}))
             break;
-        case '/change_password':
+        case '#change_password':
             renderPage(new ChangePassword({profile: user}))
             break;
-        case '/404':
+        case '#404':
             renderPage(new Error({errorCode: 404, errorMessage: 'Не туда попали'}))
             break;
-        case '/500':
+        case '#500':
             renderPage(new Error({errorCode: 500, errorMessage: 'Мы уже фиксим'}))
             break;
 
