@@ -23,3 +23,5 @@
 ```bash
     npm run start
 ```
+
+ССылка на пулл реквест https://github.com/lordproud/middle.messenger.praktikum.yandex/pull/2
