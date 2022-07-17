@@ -6,7 +6,8 @@
     "dev": "parcel static/index.html --no-cache",
     "build": "npm run clean && parcel build  static/index.html",
     "start": "npm run build && node server.js",
-    "clean": "rm -rf dist .parcel-cache"
+    "clean": "rm -rf dist .parcel-cache",
+    "lint": "eslint ./src/*/**.ts && stylelint ./src/*/**.pcss"
   },
   "repository": {
     "type": "git",
@@ -23,15 +24,21 @@
     "@parcel/transformer-pug": "^2.3.1",
     "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.2",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "parcel": "^2.6.2",
     "parcel-transformer-pug-precompile": "^1.0.6",
     "postcss": "^8.4.6",
     "postcss-custom-properties": "^12.1.4",
     "postcss-import": "^14.0.2",
+    "postcss-lit": "^0.4.3",
     "postcss-mixins": "^9.0.1",
     "postcss-nested": "^5.0.6",
     "postcss-pxtorem": "^6.0.0",
-    "postcss-url": "^10.1.3"
+    "postcss-url": "^10.1.3",
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard": "^26.0.0"
   },
   "dependencies": {
     "express": "^4.17.3",

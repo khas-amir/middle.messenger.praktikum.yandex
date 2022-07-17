@@ -14,11 +14,6 @@ import Error from './pages/Error';
 import '../static/css/styles.pcss';
 
 
-const events = {
-    'blur': (e: InputEvent) => {
-        console.log(e.target)
-    }
-}
 
 const user = {
     "email": "pochta@yandex.ru",
