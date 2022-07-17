@@ -1,0 +1,29 @@
+.profile
+    != backButton
+    .profile__wrap
+        .profile-avatar
+            .overlay
+            img(src=avatarHref, alt="avatar")
+            .middle
+                span.text Поменять #[br] аватар
+        form
+            .profile-list
+                .profile-item
+                    label.profile-item__title Почта
+                    input.profile-item__desc(value= profile.email)
+                .profile-item
+                    label.profile-item__title Логин
+                    input.profile-item__desc(value= profile.login)
+                .profile-item
+                    label.profile-item__title Имя
+                    input.profile-item__desc(value= profile['first_name'])
+                .profile-item
+                    label.profile-item__title Фамилия
+                    input.profile-item__desc(value= profile['second_name'])
+                .profile-item
+                    label.profile-item__title Имя в чате
+                    input.profile-item__desc(value= profile.username)
+                .profile-item
+                    label.profile-item__title Телефон
+                    input.profile-item__desc(value= profile.phone type="tel")
+            !=saveButton
