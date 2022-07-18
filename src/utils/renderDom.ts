@@ -7,8 +7,6 @@ export function render(query: string, block: Block) {
     throw new Error("Root element not found");
   }
 
-  console.log(block.getContent());
-
   root.appendChild(block.getContent());
   block.dispatchComponentDidMount();
 
