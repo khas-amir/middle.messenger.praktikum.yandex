@@ -10,25 +10,26 @@ type Props = {
     name: string,
     label: string,
     type: string,
-    onBlur?: void,
-    onFocus?: void
+    value: string,
+    validateErrorMessage?: string,
+    onBlur?: (e: FocusEvent) => void,
+    onChange?: (e: InputEvent) => void,
 }
-
-
 
 
 
 class FormGroup extends Block {
 
     constructor(props: Props) {
+        const {name, type, value, onBlur, onChange} = props;
         super('div', {
-            input: new Input({ id: props.name, name: props.name, events: { blur: props.onBlur, focus: props.onFocus } }),
+            input: new Input({ id: name, name, type, value, onBlur, onChange}),
             ...props
         });
     }
 
-    render(): DocumentFragment {
-        return this.compile(template, this.props)
+    render(): DocumentFragment{
+        return this.compile(template, {...this.props})
     }
 }
 

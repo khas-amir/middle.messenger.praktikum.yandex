@@ -6,12 +6,14 @@ type Props = {
     id: string,
     name: string,
     type?: string,
-    events: any
+    value: string,
+    onBlur: (e: FocusEvent) => void,
+    onChange: (e: InputEvent ) => void,
 }
 
 class Input extends Block {
     constructor(props: Props) {
-        super('div', props);
+        super('div', {events: {blur: props.onBlur, change: props.onChange}, ...props});
     }
 
     render(): DocumentFragment {

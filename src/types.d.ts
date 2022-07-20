@@ -14,5 +14,6 @@ declare interface Profile {
     second_name: string,
     login: string,
     email: string,
-    phone: string
+    phone: string,
+    password: string
 }
