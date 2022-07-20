@@ -4,6 +4,7 @@ import { v4 as makeUUID } from 'uuid';
 
 type Props = {
   [propsName: string]: Exclude<any, Block>,
+  events?: Record<string, (e: Event) => void>
 }
 
 type Meta = {
@@ -29,16 +30,10 @@ abstract class Block {
   eventBus: (() => EventBus);
   children: Children;
   _id: string;
-  events: any
+  events: Record<string, (e: Event) => void>
 
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
-  constructor(tagName = "div", propsAndChildren = {}) {
+  protected constructor(tagName = "div", propsAndChildren = {} as Props) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildren(propsAndChildren);
@@ -71,6 +66,7 @@ abstract class Block {
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = template(propsAndStubs)
+    console.log(this);
 
     Object.values(this.children).forEach(child => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
@@ -151,6 +147,9 @@ abstract class Block {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      Object.values(this.children).forEach(child => {
+        child.eventBus().emit(Block.EVENTS.FLOW_CDU)
+      })
     }
   }
 
@@ -191,9 +190,10 @@ abstract class Block {
 
   private _makePropsProxy = (props: Props) => {
     const handler: ProxyHandler<Props> = {
-      set(target, p, value, receiver): boolean {
+      set: (target, p, value, receiver) => {
+        const oldProps = {...target};
         target[p as keyof Props] = value;
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER, { ...target }, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return Reflect.set(target, p, value, receiver);
       },
 
