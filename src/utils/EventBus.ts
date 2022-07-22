@@ -1,6 +1,5 @@
-type Events = {
-    [event: string]: Function[]
-}
+type CallbackType = (...args: unknown[]) => void
+type Events = Record<string, CallbackType[]>
 
 
 class EventBus {
@@ -11,7 +10,7 @@ class EventBus {
         this.listeners = {};
     }
 
-    on(event: string, callback: Function) {
+    on(event: string, callback: CallbackType) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -19,7 +18,7 @@ class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event:string, callback: Function) {
+    off(event:string, callback: CallbackType) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
@@ -29,7 +28,7 @@ class EventBus {
         );
     }
 
-    emit(event: string, ...args: any) {
+    emit(event: string, ...args: unknown[]) {
         if (!this.listeners[event]) {
             throw new Event(`Нет события: ${event}`);
         }
