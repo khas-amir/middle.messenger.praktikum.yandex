@@ -1,63 +1,55 @@
-type ValidateType = (value: string) => boolean;
+import {
+    validateEmail,
+    validateLogin,
+    validateName,
+    validatePassword,
+    validatePhone,
+    ValidateType
+} from "./validatorsFuncs";
 
-const validateName: ValidateType = value => /^[A-ZА-Я][-a-zа-я]+$/.test(value);
-
-const validateLogin: ValidateType = value => /^[A-Za-z][a-zA-Z\d-_]{3,20}$/.test(value);
-
-const validatePassword: ValidateType = value => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,30}$/.test(value);
-
-const validatePhone: ValidateType = value => /^\+\d{10,15}$/.test(value);
-
-const validateEmail: ValidateType = value => /^([\w-_]+)@([A-z]+)\.([\w-_])/.test(value);
+import {
+    EMAIL_ERROR,
+    FIRST_NAME_ERROR,
+    LOGIN_ERROR,
+    PASSWORD_ERROR,
+    PHONE_ERROR,
+    SECOND_NAME_ERROR
+} from "./validateErrorMessages";
 
 type Error = {
     propsName: string,
     errorMessage: string
 }
 
+type ValidatorObject = Record<keyof Profile, {
+    validateFunc: ValidateType,
+    validateErrorMessage: string
+}>
 
-
-function validator(props: Record<string, string>, failedCallback: (err: Error) => void, successCallback: () => void): void {
-
-    Object.keys(props).forEach((key: keyof Profile) => {
-        const value = props[key];
-        switch (key) {
-            case 'first_name':
-                if (!validateName(value)) {
-                    failedCallback({propsName: key, errorMessage: 'Error in first_name'})
-                }
-                break;
-            case 'second_name':
-                if (!validateName(value)) {
-                    failedCallback({propsName: key, errorMessage: 'Error in second_name'})
-                }
-                break;
-            case 'email':
-                if (!validateEmail(value)) {
-                    failedCallback(({propsName: key, errorMessage: 'Error in email'}))
-                }
-                break;
-            case 'phone':
-                if (!validatePhone(value)) {
-                    failedCallback(({propsName: key, errorMessage: 'Error in phone'}))
-                }
-                break;
-            case 'password':
-                if (!validatePassword(value)) {
-                    return failedCallback(({propsName: key, errorMessage: 'Error in password'}))
-                }
-                break;
-            case 'login':
-                if (!validateLogin(value)) {
-                    failedCallback({propsName: key, errorMessage: 'Error in login'})
-                } else {
-                    successCallback();
-                }
-                break;
-            default:
-                break;
-        }
-    })
+const validatorObject: ValidatorObject = {
+    login: {validateErrorMessage: LOGIN_ERROR, validateFunc: validateLogin},
+    second_name: {validateErrorMessage: SECOND_NAME_ERROR, validateFunc: validateName},
+    first_name: {validateErrorMessage: FIRST_NAME_ERROR, validateFunc: validateName},
+    email: {validateErrorMessage: EMAIL_ERROR, validateFunc: validateEmail},
+    password: {validateErrorMessage: PASSWORD_ERROR, validateFunc: validatePassword},
+    phone: {validateErrorMessage: PHONE_ERROR, validateFunc: validatePhone},
 }
 
-export  default  validator;
+
+function validator(
+    props: Record<string, string>,
+    failedCallback: (err: Error) => void, successCallback: () => void
+): void {
+
+    Object.keys(props).forEach((key: keyof Profile) => {
+        if (!validatorObject[key].validateFunc(props[key])) {
+            failedCallback({
+                propsName: key,
+                errorMessage: validatorObject[key].validateErrorMessage
+            })
+        } else successCallback()
+    })
+
+}
+
+export default validator;
