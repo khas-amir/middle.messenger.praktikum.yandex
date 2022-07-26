@@ -1,61 +1,54 @@
 import Button from "../../components/Button";
-import FormGroup from "../../components/FormGroup";
+import LoginForm from "../../components/LoginForm";
 import Block from "../../utils/Block";
 
 import template from './login.pug';
 import validator from "../../utils/validator";
 
-type Props = Record<string, any>
-
 
 class Login extends Block {
 
+    button: Button;
+    errors: Record<string, string>
+
+    componentDidUpdate(): boolean {
+        return false;
+    }
 
     constructor() {
-        const onBlur = (e: FocusEvent) => {
-            const target = e.target as HTMLInputElement;
-            const validateProps = {[target.name]: target.value};
-            validator(validateProps,
-                (err) => {
-                    console.log(err);
-                    // this.setProps({value: target.value});
-                }, () => {
-                    console.log('succe');
-                })
+        const onSubmit = (e: SubmitEvent) => {
+            e.preventDefault();
+            const inputs = this.getContent().querySelectorAll('input');
+            const user: Record<string, string | boolean> = {};
+            inputs.forEach(el => {
+                validator({[el.name]: el.value},
+                    () => {
+                        user[el.name] = false
+                    },
+                    () => {
+                        user[el.name] = el.value
+                    })
+            })
+            if (Object.values(user).every(value => !!value)) {
+                console.log(user);
+            }
         }
 
 
-
-        const props: Props = {}
-
-        props.error = {}
-        props.inputValue = '';
-        props.inputPassword = '';
-
-        props.button = new Button({text: 'Авторизоваться'});
-        props.button2 = new Button({text: 'Нет аккаунта', type: 'a'});
-
-        props.InputLogin = new FormGroup({
-            name: 'login',
-            value: props.inputValue,
-            label: 'Логин',
-            type: 'text',
-            onBlur,
+        super('div', {
+            Form: new LoginForm({onSubmit}),
+            button2: new Button({text: 'Нет аккаунта'}),
+            events: {
+                submit: onSubmit
+            }
         });
 
-        props.InputPassword = new FormGroup({
-            name: 'password',
-            value: props.inputPassword,
-            label: 'Пароль',
-            type: 'password',
-            onBlur
-        });
-
-        super('div', props)
     }
 
     render(): DocumentFragment {
-        return this.compile(template, {...this.props})
+        return this.compile(template,
+            this.props
+        )
     }
 }
 

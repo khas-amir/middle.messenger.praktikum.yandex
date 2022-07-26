@@ -3,21 +3,33 @@ import template from './input.pug';
 
 
 type Props = {
-    id: string,
-    name: string,
+    id?: string,
+    name?: string,
     type?: string,
-    value: string,
-    onBlur: (e: FocusEvent) => void,
-    onChange: (e: InputEvent ) => void,
+    value?: string,
+    className?: string,
+    onBlur?: (e: FocusEvent) => void,
+    onChange?: (e: InputEvent) => void,
+    onFocus?: (e:FocusEvent) => void
 }
 
 class Input extends Block {
+    componentDidUpdate(): boolean {
+        return  true;
+    }
+
     constructor(props: Props) {
-        super('div', {events: {blur: props.onBlur, change: props.onChange}, ...props});
+        super('div', {
+            events: {
+                blur: props.onBlur,
+                keyup: props.onChange,
+            focus: props.onFocus,
+            }, ...props
+        });
     }
 
     render(): DocumentFragment {
-        return this.compile(template, this.props)
+        return this.compile(template, {...this.props, value: this.props.value})
     }
 }
 

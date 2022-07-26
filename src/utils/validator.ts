@@ -4,10 +4,12 @@ import {
     validateName,
     validatePassword,
     validatePhone,
-    ValidateType
+    validateChatLogin,
+    ValidateType,
 } from "./validatorsFuncs";
 
 import {
+    CHAT_LOGIN_ERROR,
     EMAIL_ERROR,
     FIRST_NAME_ERROR,
     LOGIN_ERROR,
@@ -26,6 +28,7 @@ type ValidatorObject = Record<keyof Profile, {
     validateErrorMessage: string
 }>
 
+
 const validatorObject: ValidatorObject = {
     login: {validateErrorMessage: LOGIN_ERROR, validateFunc: validateLogin},
     second_name: {validateErrorMessage: SECOND_NAME_ERROR, validateFunc: validateName},
@@ -33,6 +36,7 @@ const validatorObject: ValidatorObject = {
     email: {validateErrorMessage: EMAIL_ERROR, validateFunc: validateEmail},
     password: {validateErrorMessage: PASSWORD_ERROR, validateFunc: validatePassword},
     phone: {validateErrorMessage: PHONE_ERROR, validateFunc: validatePhone},
+    chat_login: {validateErrorMessage: CHAT_LOGIN_ERROR, validateFunc: validateChatLogin}
 }
 
 

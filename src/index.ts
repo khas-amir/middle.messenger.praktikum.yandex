@@ -1,9 +1,8 @@
 import { render } from './utils/renderDom'
-
+import Block from './utils/Block';
 //pages 
 import UserProfile from './pages/UserProfile';
 import Login from './pages/Login';
-import Block from './utils/Block';
 import Signin from './pages/Signin';
 import ChangeProfile from './pages/ChangeProfile';
 import ChangePassword from './pages/ChangePassword';
@@ -12,23 +11,19 @@ import Error from './pages/Error';
 
 //styles
 import '../static/css/styles.pcss';
-
-
-
-const user = {
+const user: Profile = {
     "email": "pochta@yandex.ru",
     "login": "ivanivanov",
     "first_name": "Иван",
     "second_name": "Иванов",
     "chat_login": "Иван",
-    "phone": "+7 (909) 967 30 30",
-    "username": "Иван"
+    "phone": "+79099673030",
+    "password": 'asdf'
 }
 
 const renderPage = (block: Block) => render('#app', block);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // const app =  document.getElementById('app');
     if (window.location.pathname === '/') {
         renderPage(new IndexPage());
     }

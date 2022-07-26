@@ -1,25 +1,36 @@
 import Button from "../../components/Button";
-import FormGroup from "../../components/FormGroup";
 import Block from "../../utils/Block";
+import SigninForm from "../../components/SigninForm";
 import template from './signin.pug';
+import validator from "../../utils/validator";
 
-type Props = Record<string, Block>
 
 class Signin extends Block {
     constructor() {
-        const props: Props = {};
-        
-        props.InputEmail = new FormGroup({ name: 'email', label: "Почта", type: 'email' });
-        props.InputLogin = new FormGroup({ name: 'login', label: "Логин", type: 'text' });
-        props.InputFirstName = new FormGroup({ name: 'first_name', label: 'Имя', type: 'text' })
-        props.InputSecondName = new FormGroup({ name: 'second_name', label: 'Фамилия', type: 'text' })
-        props.InputPhone = new FormGroup({ name: 'phone', label: 'Телефон', type: 'tel' })
-        props.InputPassword = new FormGroup({ name: 'password', label: 'Пароль', type: 'password' })
-        props.InputConfirmPassword = new FormGroup({ name: 'confirm_password', label: 'Потвердите пароль', type: 'password' });
-        props.SigninButton = new Button({text: 'Зарегистрировать'});
-        props.EnterButton = new Button({text: 'Войти', type: 'a'});
+        const onSubmit = (e: SubmitEvent) => {
+            e.preventDefault();
+            const inputs = this.getContent()
+                .querySelectorAll('input:not([name="confirm_password"])') as NodeListOf<HTMLInputElement>
+            const user: Record<string, string | boolean> = {};
+            inputs.forEach(el => {
+                validator({[el.name]: el.value},
+                    () => {
+                        user[el.name] = false
+                    },
+                    () => {
+                        user[el.name] = el.value
+                    })
+            })
+            if (Object.values(user).every(value => !!value)) {
+                console.log(user);
+            }
+        }
 
-        super('div', props);
+
+        super('div', {
+            Form: new SigninForm({onSubmit}),
+            EnterButton: new Button({text: 'Войти', type: 'a'}),
+        });
     }
 
     render(): DocumentFragment {
