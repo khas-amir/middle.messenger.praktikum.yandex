@@ -1,0 +1,27 @@
+form
+    .profile-list
+        .profile-item
+            label.profile-item__title Почта
+            span.error-message= errors.email
+            !=InputEmail
+        .profile-item
+            label.profile-item__title Логин
+            span.error-message= errors.login
+            !=InputLogin
+        .profile-item
+            label.profile-item__title Имя
+            span.error-message= errors.first_name
+            !=InputFirstName
+        .profile-item
+            label.profile-item__title Фамилия
+            span.error-message= errors.second_name
+            !=InputSecondName
+        .profile-item
+            label.profile-item__title Имя в чате
+            span.error-message= errors.chat_login
+            !=InputChatLogin
+        .profile-item
+            label.profile-item__title Телефон
+            span.error-message= errors.phone
+            !=InputPhone
+    !=saveButton

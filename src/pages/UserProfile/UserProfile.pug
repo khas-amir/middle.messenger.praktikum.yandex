@@ -1,0 +1,19 @@
+.profile
+    != backButton
+    .profile__wrap
+        .profile-avatar
+            .overlay
+            img(src=avatarHref, alt="avatar")
+            .middle
+                span.text Поменять #[br] аватар
+        h1.profile__title= profile.username
+        dl.profile-list
+            !=Email
+            !=Login
+            !=FirstName
+            !=SecondName
+            !=Username
+            !=Phone
+        !=ChangeProfileButton
+        !=ChangePasswordButton
+        !=ExitButton
