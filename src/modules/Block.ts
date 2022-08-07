@@ -179,7 +179,7 @@ abstract class Block {
     }
 
     private _render() {
-        const block = this.render();
+        const block = this.render() as unknown as DocumentFragment;
         this._removeEvents();
         this._element.innerHTML = '';
         const element = block.firstElementChild;
@@ -189,7 +189,9 @@ abstract class Block {
     }
 
     // Переопределяется пользователем. Необходимо вернуть разметку
-    abstract render(): DocumentFragment
+    public render() {
+        throw new Error('Method not implemented')
+    }
 
     public getContent() {
         return this.element;

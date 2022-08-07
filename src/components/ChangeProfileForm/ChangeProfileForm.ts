@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from './change_profile_form.pug';
 import Button from "../Button";
 import Input from "../Input";

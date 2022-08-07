@@ -1,5 +1,5 @@
 import BackButton from "../../components/BackButton";
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from "./change_profile.pug";
 import avatarHref from '../../../static/img/avatar.svg';
 import ChangeProfileForm from "../../components/ChangeProfileForm";

@@ -1,5 +1,5 @@
 import Button from "../../components/Button";
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import SigninForm from "../../components/SigninForm";
 import template from './signin.pug';
 import validator from "../../utils/validator";

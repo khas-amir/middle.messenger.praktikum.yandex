@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import FormGroup from "../FormGroup";
 import validator from "../../utils/validator";
 

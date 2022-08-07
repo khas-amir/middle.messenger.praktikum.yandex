@@ -1,5 +1,5 @@
 import Button from "../../components/Button";
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 
 import template from './error.pug';
 

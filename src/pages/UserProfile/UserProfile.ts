@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import BackButton from "../../components/BackButton";
 import template from './UserProfile.pug';
 import avatarHref from '../../../static/img/avatar.svg';
@@ -22,7 +22,7 @@ class UserProfile extends Block {
             Login: new ProfileItem({key: 'Логин', value: profile.login}),
             FirstName: new ProfileItem({key: 'Имя', value: profile['first_name']}),
             SecondName: new ProfileItem({key: 'Фамилия', value: profile['second_name']}),
-            Username: new ProfileItem({key: 'Логин в чате', value: profile.username }),
+            Username: new ProfileItem({key: 'Логин в чате', value: profile.chat_login }),
             Phone: new ProfileItem({key: 'Телефон', value: profile.phone}),
             ChangeProfileButton: new Button({text:'Изменить данные', type: 'a', className: 'profile-item'}),
             ChangePasswordButton: new Button({text:'Изменить пароль', type: 'a', className: 'profile-item'}),

@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from './back_button.pug';
 import arrow from '../../../static/img/arrow.svg';
 

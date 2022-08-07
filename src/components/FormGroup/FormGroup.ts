@@ -1,6 +1,6 @@
 declare module "./form_group.pug";
 
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import Input from "../Input";
 import template from './form_group.pug';
 

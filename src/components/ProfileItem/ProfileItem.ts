@@ -1,9 +1,9 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from "./profile_item.pug";
 
 type Props = {
     key: string;
-    value: string;
+    value?: string;
 }
 
 class ProfileItem extends Block {

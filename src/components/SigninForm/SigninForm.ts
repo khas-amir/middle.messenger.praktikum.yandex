@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from './signin_form.pug';
 import FormGroup from "../FormGroup";
 import validator from "../../utils/validator";
@@ -49,7 +49,7 @@ class SigninForm extends Block {
 
     getComponent(name: string) {
         const children = this.children;
-        const mapped : Record<string, FormGroup> = {
+        const mapped : Record<string, Block> = {
             login: children.InputLogin,
             first_name: children.InputFirstName,
             email: children.InputEmail,

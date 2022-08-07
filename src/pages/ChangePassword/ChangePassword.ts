@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 import template from "./change_password.pug";
 import avatarHref from '../../../static/img/avatar.svg';
 import BackButton from "../../components/BackButton";

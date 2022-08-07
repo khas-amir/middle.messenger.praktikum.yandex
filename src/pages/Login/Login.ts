@@ -1,6 +1,6 @@
 import Button from "../../components/Button";
 import LoginForm from "../../components/LoginForm";
-import Block from "../../utils/Block";
+import Block from "../../modules/Block";
 
 import template from './login.pug';
 import validator from "../../utils/validator";
