@@ -1,5 +1,3 @@
-import { render } from './utils/renderDom'
-import Block from './utils/Block';
 //pages 
 import UserProfile from './pages/UserProfile';
 import Login from './pages/Login';
@@ -11,6 +9,9 @@ import Error from './pages/Error';
 
 //styles
 import '../static/css/styles.pcss';
+
+import Router from "./modules/Router";
+
 const user: Profile = {
     "email": "pochta@yandex.ru",
     "login": "ivanivanov",
@@ -21,45 +22,16 @@ const user: Profile = {
     "password": 'asdf'
 }
 
-const renderPage = (block: Block) => render('#app', block);
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname === '/') {
-        renderPage(new IndexPage());
-    }
-})
+const router = new Router('#app');
 
-window.addEventListener('hashchange', () => {
-    const app = document.getElementById('app');
-    if (app) {
-        app.textContent = ''
-    }
-    switch (window.location.hash) {
-        case '#login':
-            renderPage(new Login())
-            break;
-        case '#profile':
-            renderPage(new UserProfile({ profile: user }))
-            break;
-        case '#signin':
-            renderPage(new Signin());
-            break;
-        case '#change_profile':
-            renderPage(new ChangeProfile({profile: user}))
-            break;
-        case '#change_password':
-            renderPage(new ChangePassword({profile: user}))
-            break;
-        case '#404':
-            renderPage(new Error({errorCode: 404, errorMessage: 'Не туда попали'}))
-            break;
-        case '#500':
-            renderPage(new Error({errorCode: 500, errorMessage: 'Мы уже фиксим'}))
-            break;
-
-        default:
-            break;
-    }
-
-})
-
+router
+    .use('/', IndexPage)
+    .use('/profile', UserProfile, {profile: user})
+    .use('/login', Login)
+    .use('/signin', Signin)
+    .use('/404', Error, {errorCode: 404, errorMessage: 'Не туда попали'})
+    .use('/500', Error, {errorCode: 500, errorMessage: 'Мы уже фиксим'})
+    .use('/change_profile', ChangeProfile, {profile: user})
+    .use('/change_password', ChangePassword, {profile: user})
+.start();
