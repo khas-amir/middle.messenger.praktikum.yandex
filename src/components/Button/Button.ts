@@ -5,13 +5,14 @@ type Props = {
     text: string,
     type?: string,
     className?: string,
-    href?: string
+    href?: string,
+    onClick?: (e: MouseEvent) => void
 }
 
 export default class Button extends Block {
 
     constructor(props: Props) {
-        super('div', props);
+        super('div', {...props, events: {click: props.onClick}});
     }
 
     render() {
