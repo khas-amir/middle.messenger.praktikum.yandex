@@ -5,7 +5,6 @@ import Block from "../../modules/Block";
 import template from './login.pug';
 import validator from "../../utils/validator";
 import LoginController from "../../controllers/LoginController";
-import {router} from "../../index";
 
 
 class Login extends Block {
@@ -30,8 +29,6 @@ class Login extends Block {
 
         const onSubmit = (e: SubmitEvent) => {
             e.preventDefault();
-
-
             const inputs = this.getContent().querySelectorAll('input');
             const user: Record<string, string | boolean> = {};
             inputs.forEach(el => {

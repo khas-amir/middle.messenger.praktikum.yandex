@@ -18,8 +18,8 @@ class LoginApi extends BaseAPI {
     request() {
         return authAPIInstance
             .get('/user', options)
-            .then(({response}) => JSON.parse(response))
-            .then(({id}) => id)
+            
+            // .catch(err => console.error(err))
     }
 
     // Авторизация

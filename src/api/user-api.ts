@@ -14,8 +14,10 @@ const options: OptionsWithoutMethod = {
 class UserAPI extends BaseAPI {
     request(id: string) {
         return userAPIinstance.get(`/${id}`, options)
-            .then(({response}) => JSON.parse(response))
-            .then(user => user)
+    }
+
+    update(newUser: Profile) {
+        return userAPIinstance.put('/profile', {...options, data: newUser})
     }
 }
 

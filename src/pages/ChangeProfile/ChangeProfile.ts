@@ -4,6 +4,8 @@ import template from "./change_profile.pug";
 import avatarHref from '../../../static/img/avatar.svg';
 import ChangeProfileForm from "../../components/ChangeProfileForm";
 import validator from "../../utils/validator";
+import connect from "../../utils/connect";
+import UserController from "../../controllers/UserController";
 
 type Props = {
     profile: Profile,
@@ -11,6 +13,14 @@ type Props = {
 }
 
 class ChangeProfile extends Block {
+
+    public componentDidUpdate(oldProps: Props, newProps: Props) {
+        if (oldProps.profile !== newProps.profile) {
+            this.children.ChangeProfileForm.setProps({profile: newProps.profile})
+        }
+        return false;
+    }
+
     constructor(props: Props) {
         const onSubmit = (e: SubmitEvent) => {
             e.preventDefault();
@@ -27,16 +37,24 @@ class ChangeProfile extends Block {
                     })
             })
             if (Object.values(user).every(key => !!key)) {
-                console.log(user);
+                new UserController().updateUser(user);
             }
-
         }
+
+
         super('div', {
             backButton: new BackButton(),
             avatarHref,
-            Form: new ChangeProfileForm({profile: props.profile, onSubmit}),
+
             ...props
-        })
+        });
+
+
+        this.children = {
+            ...this.children,
+            Form: new ChangeProfileForm({profile: this.props.profile, onSubmit})
+        }
+        new UserController().getUserInfo();
     }
 
     render(): DocumentFragment {
@@ -44,4 +62,4 @@ class ChangeProfile extends Block {
     }
 }
 
-export default ChangeProfile;
+export default connect(ChangeProfile);

@@ -121,9 +121,9 @@ abstract class Block {
     }
 
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    public componentDidMount(oldProps: Props) {
+    
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public componentDidMount(_oldProps: Props) {
         this.render();
     }
 
@@ -159,9 +159,8 @@ abstract class Block {
     }
 
     //Может пеереоределятся пользователям
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    public componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public componentDidUpdate(_oldProps: Props, _newProps: Props): boolean {
         return true;
     }
 

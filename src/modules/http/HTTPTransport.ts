@@ -35,6 +35,10 @@ export default class HTTPTransport {
     return this.request(this.baseUrl + url, {...options, method: Method.POST});
   }
 
+  put(url: string, options: OptionsWithoutMethod):Promise<XMLHttpRequest> {
+    return this.request(this.baseUrl + url, {...options, method: Method.PUT})
+  }
+
   request(url: string, options: Options = { method: Method.GET }, timeout = 5000): Promise<XMLHttpRequest> {
     const { method, data, headers } = options;
     

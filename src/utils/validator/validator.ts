@@ -36,7 +36,7 @@ const validatorObject: ValidatorObject = {
     email: {validateErrorMessage: EMAIL_ERROR, validateFunc: validateEmail},
     password: {validateErrorMessage: PASSWORD_ERROR, validateFunc: validatePassword},
     phone: {validateErrorMessage: PHONE_ERROR, validateFunc: validatePhone},
-    chat_login: {validateErrorMessage: CHAT_LOGIN_ERROR, validateFunc: validateChatLogin}
+    display_name: {validateErrorMessage: CHAT_LOGIN_ERROR, validateFunc: validateChatLogin}
 }
 
 

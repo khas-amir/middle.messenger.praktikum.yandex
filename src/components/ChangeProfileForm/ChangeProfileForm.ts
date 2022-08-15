@@ -3,6 +3,8 @@ import template from './change_profile_form.pug';
 import Button from "../Button";
 import Input from "../Input";
 import validator from "../../utils/validator";
+import connect from "../../utils/connect";
+import isEqual from "../../utils/helpers/isEqual";
 
 type Props = {
     profile: Profile,
@@ -10,6 +12,19 @@ type Props = {
 }
 
 class ChangeProfileForm extends Block {
+
+    public componentDidUpdate(oldProps: Props, newProps: Props) {
+        if (!isEqual(oldProps, newProps)) {
+            this.children.InputEmail.setProps({value: newProps.profile.email});
+            this.children.InputLogin.setProps({value: newProps.profile.login});
+            this.children.InputFirstName.setProps({value: newProps.profile.first_name});
+            this.children.InputSecondName.setProps({value: newProps.profile.second_name});
+            this.children.InputChatLogin.setProps({value: newProps.profile.display_name});
+            this.children.InputPhone.setProps({value: newProps.profile.phone});
+        }
+        return true;
+    }
+
     constructor(props: Props) {
 
         const onBlur = (e: FocusEvent) => {
@@ -41,7 +56,7 @@ class ChangeProfileForm extends Block {
         }
 
 
-        const {email, phone, second_name, first_name, password, login, chat_login} = props.profile
+        const {email, phone, second_name, first_name, password, login, display_name} = props.profile
         super('div', {
             ...props,
             InputEmail: new Input({name: 'email', value: email, className: 'profile-item__desc', onBlur, onFocus}),
@@ -68,7 +83,7 @@ class ChangeProfileForm extends Block {
                 className: 'profile-item__desc',
                 onBlur, onFocus
             }),
-            InputChatLogin: new Input({name: 'chat_login', value: chat_login, className: 'profile-item__desc',}),
+            InputChatLogin: new Input({name: 'display_name', value: display_name, className: 'profile-item__desc',}),
             saveButton: new Button({text: 'Сохранить', className: 'profile__button'}),
             errors: {
                 login: '',
@@ -83,6 +98,7 @@ class ChangeProfileForm extends Block {
         })
     }
 
+
     render(): DocumentFragment {
         return this.compile(template, this.props);
     }
@@ -96,7 +112,7 @@ class ChangeProfileForm extends Block {
             second_name: children.InputSecondName,
             phone: children.InputPhone,
             password: children.InputPassword,
-            'chat_login': children.InputChatLogin
+            display_name: children.InputChatLogin
         }
 
         return mapped[name];
@@ -104,4 +120,4 @@ class ChangeProfileForm extends Block {
 
 }
 
-export default ChangeProfileForm;
+export default connect(ChangeProfileForm);

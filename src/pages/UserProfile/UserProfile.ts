@@ -6,9 +6,7 @@ import ProfileItem from "../../components/ProfileItem";
 import Button from "../../components/Button";
 import connect from "../../utils/connect";
 import LoginController from "../../controllers/LoginController";
-import store from "../../modules/Store";
 import isEqual from "../../utils/helpers/isEqual";
-import {router} from "../../index";
 import UserController from "../../controllers/UserController";
 
 type Props = {
@@ -25,7 +23,7 @@ class UserProfile extends Block {
             this.children.Login.setProps({value: newProps.profile.login});
             this.children.FirstName.setProps({value: newProps.profile.first_name});
             this.children.SecondName.setProps({value: newProps.profile.second_name});
-            this.children.Username.setProps({value: newProps.profile.display_login});
+            this.children.Username.setProps({value: newProps.profile.display_name});
             this.children.Phone.setProps({value: newProps.profile.phone});
         }
         return false;
@@ -58,14 +56,14 @@ class UserProfile extends Block {
             }),
             ...props
         });        
-        const {profile} = this.props;
+        const profile = this.props.profile as Profile;
         this.children = {
             ...this.children,
             Email: new ProfileItem({key: 'Почта', value: profile.email}),
             Login: new ProfileItem({key: 'Логин', value: profile.login}),
             FirstName: new ProfileItem({key: 'Имя', value: profile['first_name']}),
             SecondName: new ProfileItem({key: 'Фамилия', value: profile['second_name']}),
-            Username: new ProfileItem({key: 'Логин в чате', value: profile.display_login}),
+            Username: new ProfileItem({key: 'Логин в чате', value: profile.display_name}),
             Phone: new ProfileItem({key: 'Телефон', value: profile.phone}),
         }
         new UserController().getUserInfo();
