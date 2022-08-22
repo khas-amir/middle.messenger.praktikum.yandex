@@ -108,12 +108,11 @@ abstract class Block {
 
     init() {
         this._createResources();
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
     private _componentDidMount() {
         this.componentDidMount(this._meta.props);
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 
         Object.values(this.children).forEach(child => {
             child.dispatchComponentDidMount();
@@ -124,7 +123,7 @@ abstract class Block {
     
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public componentDidMount(_oldProps: Props) {
-        this.render();
+        // this.render();
     }
 
     private _addEvents() {
@@ -170,7 +169,7 @@ abstract class Block {
         }
 
         Object.assign(this._meta.props, nextProps);
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+        // this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     };
 
     get element() {

@@ -20,8 +20,8 @@ class Store extends EventBus {
         set(this.state, path, value);
         try {
             this.emit(StoreEvents.Updated);
-        } catch {
-            return;
+        } catch (errors){
+            console.error(errors)
         }
     }
 }

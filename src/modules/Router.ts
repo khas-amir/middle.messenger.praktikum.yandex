@@ -8,7 +8,7 @@ class Router {
     _currentRoute: Route | null;
     _rootQuery: string;
 
-    constructor(rootQuery: string) {
+    constructor(rootQuery?: string) {
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -16,7 +16,9 @@ class Router {
         this.routes = [];
         this.history = window.history;
         this._currentRoute = null;
-        this._rootQuery = rootQuery;
+        if (rootQuery) {
+            this._rootQuery = rootQuery;
+        }
 
         Router.__instance = this;
     }

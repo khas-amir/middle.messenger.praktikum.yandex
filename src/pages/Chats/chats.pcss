@@ -1,0 +1,133 @@
+.chats {
+    display: flex;
+    gap: 20px;
+    --border: 1px solid var(--gray-color-100);
+
+    &-list {
+        width: 30%;
+        border-right: var(--border);
+        padding: 0 10px;
+    }
+
+    &-item {
+        display: flex;
+        justify-content: space-between;
+
+        &:first-child {
+            border-top: var(--border);
+        }
+
+        border-bottom: var(--border);
+        padding: 12px 0;
+
+
+        &__col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:nth-child(1) {
+                gap: 12px;
+            }
+            &:nth-child(2) {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+        }
+
+
+        &__image {
+            background-color: var(--gray-color-100);
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+        }
+
+        &__title {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        &__last-message {
+            color: var(--gray-color);
+        }
+
+        &__date {
+            color: var(--gray-color);
+            font-size: 9px;
+        }
+
+        &__message-count {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-radius: 50%;
+            /*TODO: Сделать нормальный центр*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &-view {
+        display: flex;
+        flex-direction: column;
+
+        &__btn-send {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 50%;
+            padding: 4px;
+        }
+
+        &__messages-list {
+            display: flex;
+            flex-direction: column;
+            border-top: var(--border);
+
+        }
+        &__message {
+            --radius: 0.5em;
+            border-bottom-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
+            padding: 11px;
+            max-width: 50%;
+
+            &_income {
+                border-bottom-right-radius: var(--radius);
+                background-color: var(--gray-color-200);
+            }
+
+            &_outcome {
+                border-top-left-radius: var(--radius);
+                align-self: flex-end;
+                background-color: var(--light-blue);
+            }
+        }
+
+        &__form {
+            margin-top: auto;
+            display: flex;
+            padding: 11px 0;
+            border-top: var(--border);
+        }
+
+        &__input-message {
+            resize: none;
+            height: 42px;
+            width: 100%;
+            padding: 10px 0 10px 20px;
+            border: none;
+            background: #EFEFEF;
+            border-radius: 30px;
+
+            &:focus {
+                outline-color: var(--primary-color);
+            }
+        }
+    }
+}

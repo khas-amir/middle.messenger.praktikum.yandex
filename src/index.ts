@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Signin from './pages/Signin';
 import ChangeProfile from './pages/ChangeProfile';
 import ChangePassword from './pages/ChangePassword';
+import Chats from "./pages/Chats";
 import Error from './pages/Error';
 
 //styles
@@ -24,4 +25,5 @@ router
     .use('/500', Error, {errorCode: 500, errorMessage: 'Мы уже фиксим'})
     .use('/change_profile', ChangeProfile, {profile: user})
     .use('/change_password', ChangePassword, {profile: user})
+    .use('/messages', Chats, {})
 .start();
