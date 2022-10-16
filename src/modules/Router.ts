@@ -23,8 +23,15 @@ class Router {
         Router.__instance = this;
     }
 
-    use(pathname: string, block: new (...args: unknown[]) => Block, props?: Record<string, unknown>) {
-        const route = new Route(pathname, block, {rootQuery: this._rootQuery, blockProps: props});
+    use(
+        pathname: string,
+        block: new (...args: unknown[]) => Block,
+        props?: Record<string, unknown>
+    ) {
+        const route = new Route(pathname, block, {
+            rootQuery: this._rootQuery,
+            blockProps: props,
+        });
         this.routes.push(route);
         return this;
     }
@@ -54,7 +61,7 @@ class Router {
     }
 
     go(pathname: string) {
-        this.history.pushState({}, "", pathname);
+        this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
     }
 
@@ -66,9 +73,8 @@ class Router {
         this.history.forward();
     }
 
-
     getRoute(pathname: string) {
-        return this.routes.find(route => route.match(pathname));
+        return this.routes.find((route) => route.match(pathname));
     }
 }
 

@@ -1,14 +1,12 @@
-import Block from "../../modules/Block";
-import template from  './modal.pug';
+import Block from '../../modules/Block';
+import template from './modal.pug';
 
 type Props = {
-    Content: Block,
-    isOpen?: boolean,
-}
+    Content: Block;
+    isOpen?: boolean;
+};
 
-class Modal extends Block{
-
-
+class Modal extends Block {
     componentDidUpdate(_oldProps: Props, _newProps: Props): boolean {
         return true;
     }
@@ -17,11 +15,11 @@ class Modal extends Block{
         super('div', {
             Content: props.Content,
         });
-        this.setProps({isOpen: false})
+        this.setProps({ isOpen: false });
     }
 
     render() {
-        return this.compile(template, this.props)
+        return this.compile(template, this.props);
     }
 }
 

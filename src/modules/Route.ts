@@ -1,17 +1,20 @@
 import Block from './Block';
 import { render } from '../utils/renderDom';
 
-
 export default class Route {
     _pathname: string;
     _blockClass: new (...args: unknown[]) => Block;
     _block: Block | null;
     _props: {
-        rootQuery: string,
-        blockProps: Record<string, unknown>
-    }
+        rootQuery: string;
+        blockProps: Record<string, unknown>;
+    };
 
-    constructor(pathname: string, view: new (...args: unknown[]) => Block, props: any) {
+    constructor(
+        pathname: string,
+        view: new (...args: unknown[]) => Block,
+        props: any
+    ) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;

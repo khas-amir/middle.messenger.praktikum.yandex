@@ -1,4 +1,4 @@
-import HTTP, {OptionsWithoutMethod} from '../modules/http/HTTPTransport';
+import HTTP, { OptionsWithoutMethod } from '../modules/http/HTTPTransport';
 import { BaseAPI, API_URL } from './base-api';
 
 const chatAPIInstance = new HTTP(API_URL + '/chats');
@@ -18,10 +18,8 @@ class ChatAPI extends BaseAPI {
     }
 
     request() {
-        return chatAPIInstance.get('',options);
+        return chatAPIInstance.get('', options);
     }
 }
 
-
-
-export  default ChatAPI;
+export default ChatAPI;

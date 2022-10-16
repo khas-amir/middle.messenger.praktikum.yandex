@@ -1,5 +1,5 @@
-import {API_URL, BaseAPI} from "./base-api";
-import HTTPTransport from "../modules/http/HTTPTransport";
+import { API_URL, BaseAPI } from './base-api';
+import HTTPTransport from '../modules/http/HTTPTransport';
 
 const signupAPIInstance = new HTTPTransport(API_URL + '/auth');
 
@@ -9,10 +9,10 @@ class SignupApi extends BaseAPI {
             credentials: 'include',
             mode: 'cors',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
-            data: newUser
-        })
+            data: newUser,
+        });
     }
 }
 

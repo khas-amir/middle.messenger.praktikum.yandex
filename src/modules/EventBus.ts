@@ -1,10 +1,8 @@
-type CallbackType = (...args: unknown[]) => void
-type Events = Record<string, CallbackType[]>
-
+type CallbackType = (...args: unknown[]) => void;
+type Events = Record<string, CallbackType[]>;
 
 class EventBus {
-
-    private readonly listeners: Events
+    private readonly listeners: Events;
 
     constructor() {
         this.listeners = {};
@@ -18,13 +16,13 @@ class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event:string, callback: CallbackType) {
+    off(event: string, callback: CallbackType) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
         this.listeners[event] = this.listeners[event].filter(
-            listener => listener !== callback
+            (listener) => listener !== callback
         );
     }
 
@@ -33,7 +31,7 @@ class EventBus {
             throw new Event(`Нет события: ${event}`);
         }
 
-        this.listeners[event].forEach(listener => {
+        this.listeners[event].forEach((listener) => {
             listener(...args);
         });
     }

@@ -1,3 +1,3 @@
-import ProfileItem from "./ProfileItem";
+import ProfileItem from './ProfileItem';
 
 export default ProfileItem;

@@ -1,10 +1,9 @@
-import Block from "../../modules/Block";
-import template from "./index.pug";
-
+import Block from '../../modules/Block';
+import template from './index.pug';
 
 class IndexPage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     render(): DocumentFragment {

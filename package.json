@@ -7,7 +7,7 @@
     "build": "npm run clean && parcel build  static/index.html",
     "start": "npm run build && node server.js",
     "clean": "rm -rf dist .parcel-cache",
-    "lint": "eslint ./src/*/**.ts && stylelint ./src/*/**.pcss"
+    "lint": "eslint --fix src && stylelint ./src/*/**.pcss"
   },
   "repository": {
     "type": "git",

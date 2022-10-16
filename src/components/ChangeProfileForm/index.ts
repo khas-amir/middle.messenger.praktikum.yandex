@@ -1,3 +1,3 @@
-import ChangeProfileForm from "./ChangeProfileForm";
+import ChangeProfileForm from './ChangeProfileForm';
 
 export default ChangeProfileForm;

@@ -1,5 +1,4 @@
-import ChangeProfile from "./ChangeProfile";
-
+import ChangeProfile from './ChangeProfile';
 
 import './profile.pcss';
 

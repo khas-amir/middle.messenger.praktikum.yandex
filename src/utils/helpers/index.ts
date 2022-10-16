@@ -1,12 +1,12 @@
-import {cloneDeep} from "./cloneDeep";
-import merge from "./merge";
-import isObject from "./isObject";
-import {isPlainObject} from "./isPlainObject";
-import {queryStringify} from "./queryStringify";
-import {trim} from "./trim";
-import set from "./set";
-import {isArray} from "./isArray";
-import {isArrayOrObject} from "./isArrayOrObject";
+import { cloneDeep } from './cloneDeep';
+import merge from './merge';
+import isObject from './isObject';
+import { isPlainObject } from './isPlainObject';
+import { queryStringify } from './queryStringify';
+import { trim } from './trim';
+import set from './set';
+import { isArray } from './isArray';
+import { isArrayOrObject } from './isArrayOrObject';
 
 export {
     cloneDeep,
@@ -17,5 +17,5 @@ export {
     trim,
     set,
     isArray,
-    isArrayOrObject
-}
+    isArrayOrObject,
+};

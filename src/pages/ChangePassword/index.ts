@@ -1,4 +1,4 @@
-import ChangePassword from "./ChangePassword";
+import ChangePassword from './ChangePassword';
 
 import '../UserProfile/profile.pcss';
 

@@ -1,5 +1,5 @@
-import {isPlainObject} from "./isPlainObject";
-import {isArray} from "./isArray";
+import { isPlainObject } from './isPlainObject';
+import { isArray } from './isArray';
 
 export function cloneDeep<T extends object = object>(obj: T): T {
     if (isPlainObject(obj)) {

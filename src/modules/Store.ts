@@ -1,13 +1,13 @@
-import EventBus from "./EventBus";
-import set from "../utils/helpers/set";
+import EventBus from './EventBus';
+import set from '../utils/helpers/set';
 
 export enum StoreEvents {
     Updated = 'updated',
 }
 
 type Indexed<T = unknown> = {
-    [key in string]: T
-}
+    [key in string]: T;
+};
 
 class Store extends EventBus {
     private state: Indexed = {};
@@ -20,8 +20,8 @@ class Store extends EventBus {
         set(this.state, path, value);
         try {
             this.emit(StoreEvents.Updated);
-        } catch (errors){
-            console.error(errors)
+        } catch (errors) {
+            console.error(errors);
         }
     }
 }

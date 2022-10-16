@@ -1,23 +1,23 @@
-import Button from "../../components/Button";
-import Block from "../../modules/Block";
+import Button from '../../components/Button';
+import Block from '../../modules/Block';
 
 import template from './error.pug';
 
 type Props = {
     errorCode: number;
     errorMessage: string;
-}
+};
 
 class Error extends Block {
     constructor(props: Props) {
         super('div', {
-            back: new Button({ text: 'Назад к чатам', type: "a" }),
-            ...props
+            back: new Button({ text: 'Назад к чатам', type: 'a' }),
+            ...props,
         });
     }
 
     render(): DocumentFragment {
-        return this.compile(template, this.props)
+        return this.compile(template, this.props);
     }
 }
 

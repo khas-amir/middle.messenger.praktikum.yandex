@@ -1,21 +1,20 @@
-import Block from "../../modules/Block";
+import Block from '../../modules/Block';
 import template from './input.pug';
 
-
 type Props = {
-    id?: string,
-    name?: string,
-    type?: string,
-    value?: string,
-    className?: string,
-    onBlur?: (e: FocusEvent) => void,
-    onChange?: (e: InputEvent) => void,
-    onFocus?: (e:FocusEvent) => void
-}
+    id?: string;
+    name?: string;
+    type?: string;
+    value?: string;
+    className?: string;
+    onBlur?: (e: FocusEvent) => void;
+    onChange?: (e: InputEvent) => void;
+    onFocus?: (e: FocusEvent) => void;
+};
 
 class Input extends Block {
     componentDidUpdate(): boolean {
-        return  true;
+        return true;
     }
 
     constructor(props: Props) {
@@ -23,13 +22,17 @@ class Input extends Block {
             events: {
                 blur: props.onBlur,
                 keyup: props.onChange,
-            focus: props.onFocus,
-            }, ...props
+                focus: props.onFocus,
+            },
+            ...props,
         });
     }
 
     render(): DocumentFragment {
-        return this.compile(template, {...this.props, value: this.props.value})
+        return this.compile(template, {
+            ...this.props,
+            value: this.props.value,
+        });
     }
 }
 
