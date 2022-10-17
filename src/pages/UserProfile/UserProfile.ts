@@ -8,6 +8,7 @@ import connect from '../../utils/connect';
 import LoginController from '../../controllers/LoginController';
 import isEqual from '../../utils/helpers/isEqual';
 import UserController from '../../controllers/UserController';
+import store from '../../modules/Store';
 
 type Props = {
     profile: Profile;
@@ -30,7 +31,7 @@ class UserProfile extends Block {
             });
             this.children.Phone.setProps({ value: newProps.profile.phone });
         }
-        return false;
+        return true;
     }
 
     constructor(props: Props) {
@@ -76,11 +77,17 @@ class UserProfile extends Block {
             }),
             Phone: new ProfileItem({ key: 'Телефон', value: profile.phone }),
         };
-        new UserController().getUserInfo();
+
+        new UserController().getUserInfo().then((user) => {
+            store.set('profile', user);
+        });
     }
 
     render() {
-        return this.compile(template, this.props);
+        return this.compile(template, {
+            ...this.props,
+            profile: store.getState(),
+        });
     }
 }
 

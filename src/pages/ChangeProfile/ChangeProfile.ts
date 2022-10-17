@@ -6,6 +6,7 @@ import ChangeProfileForm from '../../components/ChangeProfileForm';
 import validator from '../../utils/validator';
 import connect from '../../utils/connect';
 import UserController from '../../controllers/UserController';
+import store from '../../modules/Store';
 
 type Props = {
     profile: Profile;
@@ -15,11 +16,11 @@ type Props = {
 class ChangeProfile extends Block {
     public componentDidUpdate(oldProps: Props, newProps: Props) {
         if (oldProps.profile !== newProps.profile) {
-            this.children.ChangeProfileForm.setProps({
+            this.children.Form.setProps({
                 profile: newProps.profile,
             });
         }
-        return false;
+        return true;
     }
 
     constructor(props: Props) {
@@ -58,11 +59,17 @@ class ChangeProfile extends Block {
                 onSubmit,
             }),
         };
-        new UserController().getUserInfo();
+
+        new UserController()
+            .getUserInfo()
+            .then((user) => store.set('profile', user));
     }
 
     render(): DocumentFragment {
-        return this.compile(template, this.props);
+        return this.compile(template, {
+            ...this.props,
+            profile: store.getState(),
+        });
     }
 }
 
