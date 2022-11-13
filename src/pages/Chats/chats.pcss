@@ -1,133 +1,195 @@
 .chats {
-    display: flex;
-    gap: 20px;
-    --border: 1px solid var(--gray-color-100);
+	display: flex;
+	gap: 20px;
+	max-width: 1290px;
+	margin: 0 auto;
+	--border: 1px solid var(--gray-color-100);
 
-    &-list {
-        width: 30%;
+	&-left {
+		flex: 0 0 30%;
+		background-color: var(--gray-color-300);
         border-right: var(--border);
-        padding: 0 10px;
-    }
+		padding: 0 10px;
+	}
 
-    &-item {
-        display: flex;
-        justify-content: space-between;
+	&__profile-link {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 8px;
+		font-size: 12px;
+		text-decoration: none;
+		color: var(--gray-color);
+		text-align: right;
+		margin-bottom: 23px;
+        margin-top: 21px;
+	}
 
-        &:first-child {
-            border-top: var(--border);
+	&__search-form {
+		width: 100%;
+		background-color: var(--gray-color-400);
+		border: none;
+		border-radius: 5px;
+		margin-bottom: 14px;
+		padding: 10px 10px ;
+		font-size: 12px;
+
+
+		&::placeholder {
+			text-align: center;
+		}
+	}
+
+	&-list {
+		margin: 0;
+		padding: 0;
+	}
+
+	&-item {
+		display: flex;
+		justify-content: space-between;
+
+		&:first-child {
+			border-top: var(--border);
+		}
+
+		border-bottom: var(--border);
+		padding: 12px 10px;
+        
+        &:hover {
+            background-color: var(--light-blue);
         }
 
-        border-bottom: var(--border);
-        padding: 12px 0;
+
+		&__col {
+			display: flex;
+			align-items: center;
+
+			&:nth-child(1) {
+				gap: 12px;
+			}
+			&:nth-child(2) {
+				flex-direction: column;
+				gap: 14px;
+			}
+
+		}
 
 
-        &__col {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+		&__image {
+			background-color: var(--gray-color-100);
+			width: 47px;
+			height: 47px;
+			border-radius: 50%;
+		}
 
-            &:nth-child(1) {
-                gap: 12px;
-            }
-            &:nth-child(2) {
-                flex-direction: column;
-                gap: 14px;
-            }
+		&__title {
+			font-weight: 600;
+			font-size: 13px;
+		}
 
+		&__last-message {
+			color: var(--gray-color);
+		}
+
+		&__date {
+			color: var(--gray-color);
+			font-size: 9px;
+		}
+
+		&__message-count {
+			background-color: var(--primary-color);
+			color: var(--white-color);
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 11px;
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	&-view {
+		display: flex;
+		flex-direction: column;
+
+		&__avatar {
+			width: 34px;
+			height: 34px;
+			background-color: var(--gray-color-400);
+			border-radius: 50%;
+		}
+
+		&__header {
+			display: flex;
+			align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+		}
+
+        &__menu-dots {
+            margin-left: auto;
+            margin-right: 10px;
         }
 
 
-        &__image {
-            background-color: var(--gray-color-100);
-            width: 47px;
-            height: 47px;
-            border-radius: 50%;
-        }
+		&__btn-send {
+			background-color: var(--primary-color);
+			color: var(--white-color);
+			border: none;
+			border-radius: 50%;
+			/*padding: 4px;*/
+			width: 28px;
+			height: 28px;
+		}
 
-        &__title {
-            font-weight: 600;
-            font-size: 13px;
-        }
+		&__messages-list {
+			display: flex;
+			flex-direction: column;
+			border-top: var(--border);
 
-        &__last-message {
-            color: var(--gray-color);
-        }
+		}
+		&__message {
+			--radius: 0.5em;
+			border-bottom-left-radius: var(--radius);
+			border-top-right-radius: var(--radius);
+			padding: 11px;
+			max-width: 50%;
 
-        &__date {
-            color: var(--gray-color);
-            font-size: 9px;
-        }
+			&_income {
+				border-bottom-right-radius: var(--radius);
+				background-color: var(--gray-color-200);
+			}
 
-        &__message-count {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border-radius: 50%;
-            /*TODO: Сделать нормальный центр*/
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 11px;
-            width: 20px;
-            height: 20px;
-        }
-    }
+			&_outcome {
+				border-top-left-radius: var(--radius);
+				align-self: flex-end;
+				background-color: var(--light-blue);
+			}
+		}
 
-    &-view {
-        display: flex;
-        flex-direction: column;
+		&__form {
+			margin-top: 30px;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 11px 0;
+			border-top: var(--border);
+		}
 
-        &__btn-send {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border: none;
-            border-radius: 50%;
-            padding: 4px;
-        }
+		&__input-message {
+			resize: none;
+			height: 42px;
+			width: 100%;
+			padding: 10px 0 10px 20px;
+			border: none;
+			background: #EFEFEF;
+			border-radius: 30px;
 
-        &__messages-list {
-            display: flex;
-            flex-direction: column;
-            border-top: var(--border);
-
-        }
-        &__message {
-            --radius: 0.5em;
-            border-bottom-left-radius: var(--radius);
-            border-top-right-radius: var(--radius);
-            padding: 11px;
-            max-width: 50%;
-
-            &_income {
-                border-bottom-right-radius: var(--radius);
-                background-color: var(--gray-color-200);
-            }
-
-            &_outcome {
-                border-top-left-radius: var(--radius);
-                align-self: flex-end;
-                background-color: var(--light-blue);
-            }
-        }
-
-        &__form {
-            margin-top: auto;
-            display: flex;
-            padding: 11px 0;
-            border-top: var(--border);
-        }
-
-        &__input-message {
-            resize: none;
-            height: 42px;
-            width: 100%;
-            padding: 10px 0 10px 20px;
-            border: none;
-            background: #EFEFEF;
-            border-radius: 30px;
-
-            &:focus {
-                outline-color: var(--primary-color);
-            }
-        }
-    }
+			&:focus {
+				outline-color: var(--primary-color);
+			}
+		}
+	}
 }
